@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>失落的一角</title>
+</head>
+<body>
+
+<canvas id="myCanvas" width="800px" height="600px" style="border: 1px solid black;"></canvas>
+
+<script type="text/javascript">
+    var canvas = document.getElementById("myCanvas");
+    if(canvas.getContext){var ctx = canvas.getContext("2d");
+
+        ctx.closePath();
+        ctx.strokeStyle = "black";
+        var circle = {x:300,y:300,r:100};
+        ctx.arc(circle.x, circle.y, circle.r, 0, Math.PI *9/5, false);
+        ctx.moveTo(380,240);
+        ctx.lineTo(300,300);
+        ctx.lineTo(401,299);
+        ctx.lineWidth=3;
+        ctx.stroke();
+        ctx.closePath();
+
+        ctx.beginPath();
+        ctx.strokeStyle = "black";
+        ctx.fillStyle="black";
+        var circle = {x:280,y:250,r:3};
+        ctx.arc(circle.x, circle.y, circle.r, 0, Math.PI *2, false);
+        ctx.stroke();
+        ctx.fill();
+        ctx.closePath();
+
+        ctx.beginPath();
+        ctx.strokeStyle = "black";
+        ctx.moveTo(0,400);
+        ctx.lineTo(800,400);
+        ctx.lineWidth=3;
+        ctx.stroke();
+        ctx.closePath();
+
+        //绘制文字
+        ctx.beginPath();
+        ctx.save();
+        ctx.fillStyle="black";
+        ctx.globalAlpha="5";
+        ctx.textAlign="center";
+        ctx.font="32px Arial";
+        ctx.fillText('失落的一角',80,80);
+
+        ctx.fillStyle="#00AAAA";
+        ctx.globalAlpha="0.4";
+        ctx.textAlign="center";
+        ctx.font="32px Arial";
+        ctx.shadowColor="rgba(0,0,0,0.4)";
+        ctx.shadowOffsetX=15;
+        ctx.shadowOffsetY=-10;
+        ctx.shadowBlur=2;
+        ctx.fillText('陆冠延',700,500);
+
+
+        ctx.restore();
+        ctx.closePath();
+
+
+
+    }
+</script>
+</body>
+</html>
