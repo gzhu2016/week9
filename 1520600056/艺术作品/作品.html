@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>艺术作品</title>
+</head>
+<body>
+<canvas id="canvas" width="1000" height="600"  style="border:1px solid #aaaaaa;display:block;margin:50px auto;">
+    你的浏览器居然不支持canvas？！赶快换一个吧！！！
+</canvas>
+<script type="text/javascript">
+    window.onload = function () {
+        var canvas = document.getElementById("canvas");
+        var context = canvas.getContext("2d");
+
+        context.rect(0,0,canvas.width,canvas.height);
+        var grd=context.createLinearGradient(500,0,500,600);
+        grd.addColorStop(0.0,'black');
+        grd.addColorStop(0.5,'#035');
+        grd.addColorStop(1.0,'black');
+        context.fillStyle=grd;
+        context.fill();
+        //渐变底色，在全局透明下也能加深插入的图片颜色
+
+        context.beginPath();
+        var img = new Image();
+        img.src = "picture.jpeg";
+        img.onload = function () {
+            context.drawImage(img, 0, 0, 192 * 5.6, 108 * 5.6)
+        };
+        //插入图片
+
+        context.globalAlpha= 0.75;
+        for(var i=0;i<=35;i++){
+            var R=Math.floor(Math.random()*255);
+            var G=Math.floor(Math.random()*255);
+            var B=Math.floor(Math.random()*255);
+
+            context.fillStyle="rgb("+R+","+G+","+B+")";
+            context.beginPath();
+            context.arc(Math.random()*canvas.width,Math.random()*canvas.height,Math.random()*100,0,Math.PI*2);
+            context.fill();
+        }
+        //全局透明
+
+        context.font="25px Verdana";
+        context.fillStyle="white";
+        context.fillText("林健珍的作品",800,580);
+        //文字API标记
+    }
+</script>
+</body>
+</html>
