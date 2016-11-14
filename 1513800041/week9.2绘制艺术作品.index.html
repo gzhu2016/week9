@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>艺术作品</title>
+</head>
+
+<body>
+<div id="canvas-warp">
+    <canvas id="canvas" style="border : 1px solid #aaaaaa; display: block; margin: 50px auto">
+        你的浏览器居然不支持Canvas？！赶快换一个吧！！
+    </canvas>
+</div>
+
+<script>
+    window.onload = function () {
+        var canvas = document.getElementById("canvas");
+        canvas.width = 800;
+        canvas.height = 600;
+        var context = canvas.getContext("2d");
+
+        context.rect(0, 0, 800, 600);
+
+        //添加渐变线
+        var grd = context.createLinearGradient(200, 0, 200, 600);
+
+        //添加颜色断点
+        grd.addColorStop(0, "black");
+        grd.addColorStop(0.7, "#000033");
+        grd.addColorStop(0.9, "#000066");
+        grd.addColorStop(1, "#000077");
+
+        //应用渐变
+        context.fillStyle = grd;
+        context.fill();
+
+        //定义星空
+        for (var i = 0; i < 200; i++) {
+            var R = Math.random() * 10 + 10;
+            var x = Math.random() * canvas.width;
+            var y = Math.random() * canvas.height;
+            var rot = Math.random() * 360;
+            drawStar(context, x, y, 5, 10, rot);
+
+        //定义月亮
+            drawMoon(context, 550, 100, 550, 200, 600, 150);
+            context.linewidth = 1;
+            context.strokeStyle = "yellow";
+            context.fillStyle = "yellow";
+            context.stroke();
+            context.fill();
+        }
+        //定义API
+        context.font = "normal normal bold 24 px 黑体";
+        context.fillStyle = "white";
+        context.fillText("1513800041 胡培阳", 50, 550);
+        };
+    //画月亮
+    function drawMoon(cxt, x1, y1, x2, y2, x3, y3) {
+        cxt.beginPath();
+        cxt.arc((x2 + x1) / 2, (y2 + y1) / 2, (y2 - y1) / 2, Math.PI * 0.5, Math.PI * 1.5, true);
+        cxt.arcTo(x3, y3, x2, y2, (y2 - y1) / 2 / (x3 - x1) * dis(x1, y1, x3, y3));
+        cxt.closePath();
+    }
+
+    function dis(x1, y1, x2, y2) {
+        return Math.sqrt((x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2));
+    }
+
+    //画星星
+    function drawStar(cxt, x, y, r, R, rot) {
+        cxt.beginPath();
+        for (var i = 0; i < 5; i++) {
+            cxt.lineTo(
+                    Math.cos((18 + i * 72 - rot) / 180 * Math.PI) * R + x,
+                    -Math.sin((18 + i * 72 - rot) / 180 * Math.PI) * R + y
+            );
+            cxt.lineTo(
+                    Math.cos((54 + i * 72 - rot) / 180 * Math.PI) * r + x,
+                    -Math.sin((54 + i * 72 - rot) / 180 * Math.PI) * r + y
+            );
+        }
+        cxt.closePath();
+        cxt.lineWidth = 2;
+        cxt.lineCap = "round";
+        cxt.strokeStyle = "#FCFF7D";
+        cxt.fillStyle = "yellow";
+        cxt.fill();
+        cxt.stroke();
+    }
+
+</script>
+</body>
+</html>
