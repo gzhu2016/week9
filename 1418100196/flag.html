@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<div id="canvas-warp">
+    <canvas id="canvas" style="border:1px solid #aaaaaa;display:block;margin:50px auto;">
+        当前浏览器不支持Canvas，请更换浏览器后再试!
+    </canvas>
+</div>
+<script>
+    window.onload = function() {
+        var canvas = document.getElementById("canvas");
+
+        canvas.width = 1200;
+        canvas.height = 800;
+        var context = canvas.getContext("2d");
+
+        context.beginPath();
+        context.lineWidth = 5;
+        context.moveTo(100 , 100);
+        context.lineTo(100 , 800);
+        context.strokeStyle = "black";
+        context.stroke();
+
+
+        context.beginPath();
+        context.lineWidth = 5;
+        context.moveTo(100 , 100);
+        context.lineTo(700 , 100);
+        context.lineTo(700 , 500);
+        context.lineTo(100 ,500);
+        context.closePath();
+        context.strokeStyle = "black";
+        context.fillStyle = "red";
+        context.fill();
+        context.stroke();
+
+
+        drawStar(context , 50 , 200 ,250, 0);
+        drawStar(context , 10 , 300 , -50 , 36);
+        drawStar(context , 10 , 400 ,-70 , 36 );
+        drawStar(context , 10 , 400 , 280 , 0);
+        drawStar(context , 10 , 500 ,100 , 36);
+
+    }
+    function drawStar(cxt, r, x, y , rot){
+        cxt.save();
+        cxt.beginPath();
+        cxt.lineWidth = 5;
+        cxt.rotate(rot / 180 * Math.PI);
+
+        for(var i = 0; i < 5; i++){
+            cxt.lineTo( Math.cos(( 18 + i*72)/180 * Math.PI) * 2 * r + x , -Math.sin( (18 + i*72)/180 * Math.PI) * 2 * r  + y);
+
+            cxt.lineTo(Math.cos(( 54 + i*72)/180 *Math.PI) * r + x , -Math.sin( (54 + i*72)/180 * Math.PI) * r + y);
+
+        }
+
+        cxt.closePath();
+        cxt.strokeStyle = "yellow";
+        cxt.fillStyle = "yellow";
+        cxt.fill();
+        cxt.stroke();
+        cxt.restore();
+
+    }
+
+</script>
+</body>
+</html>
