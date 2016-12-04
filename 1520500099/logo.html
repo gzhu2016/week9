@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>制作我的logo</title>
+    <style>
+        body {
+            background: url("/image/bg3.jpg") repeat;
+        }
+        /*背景始终显示不出来。。*/
+        #canvas {
+            border: 1px solid #aaaaaa;
+            display: block;
+            margin: 50px auto;
+        }
+    </style>
+</head>
+
+<body>
+<div id="canvas-warp">
+    <canvas id="canvas" style="border: 1px solid #aaaaaa;
+    display: block;margin: 50px auto" >
+        你的浏览器居然不支持Canvas？！赶快换一个吧！！
+    </canvas>
+</div>
+<script>
+    window.onload=function() {
+        var canvas = document.getElementById("canvas");
+        canvas.width = 800;
+        canvas.height = 800;
+        var context = canvas.getContext("2d");
+
+       context.beginPath();
+       context.font="50px serif";
+       context.fillStyle="blue";
+       context.textAlign="center";
+       context.fillText("1520500099 董鹏程",250,600);
+       context.closePath();
+
+        context.beginPath();
+        for (var i = 0; i < 5; i++) {
+            context.lineTo(Math.cos((18+i*72)/180*Math.PI)*200+200,
+                    -Math.sin((18+i*72)/180*Math.PI)*200+200);
+            context.lineTo(Math.cos((54+i*72)/180*Math.PI)*80+200,
+                    -Math.sin((54+i*72)/180*Math.PI)*80+200);
+        }
+        context.closePath();
+        context.lineWidth="5";
+        context.fillStyle = "red";
+        context.strokeStyle = "yellow";
+
+        context.fill();
+        context.stroke();
+    }
+</script>
+</body>
+</html>

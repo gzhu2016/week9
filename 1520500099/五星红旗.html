@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>中国国旗</title>
+</head>
+
+<body onload="draw();">
+<div id="canvas-warp">
+    <canvas id="canvas" width="800" height="800" style="border: 1px solid #aaaaaa;
+    display: block;margin: 50px auto" >
+        你的浏览器居然不支持Canvas？！赶快换一个吧！！
+    </canvas>
+</div>
+    <script type="text/javascript">
+        function draw() {
+            var ctx = document.getElementById('canvas').getContext('2d');
+            //绘制红色的画布
+            ctx.fillStyle = '#f00';
+
+            ctx.beginPath();
+            ctx.font="50px serif";
+            ctx.fillStyle="red";
+            ctx.textAlign="end";
+            ctx.fillText("1520500099 董鹏程",500,500);
+            ctx.closePath();
+
+            ctx.fillRect(0,0,450,300);
+            ctx.translate(75,75);
+            //绘制大五角星
+            ctx.save();
+            ctx.rotate(Math.PI*2/7);
+            drawStar(ctx,40);
+            ctx.restore();
+            //绘制四个小五角星
+            ctx.save();
+            ctx.translate(80,-50);
+            drawStar(ctx,10);
+            ctx.restore();
+            ctx.save();
+            ctx.translate(110,-10);
+            drawStar(ctx,10);
+            ctx.restore();
+            ctx.save();
+            ctx.translate(110,30);
+            drawStar(ctx,10);
+            ctx.restore();
+            ctx.save();
+            ctx.translate(80,70);
+            drawStar(ctx,10);
+            ctx.restore();
+        }
+
+        //绘制五角星函数
+        function drawStar(ctx,r){
+            ctx.save();
+            ctx.beginPath()
+            ctx.moveTo(r,0);
+            for (var i=0;i<9;i++){
+                ctx.rotate(Math.PI/5);
+                if(i%2 == 0) {
+                    ctx.lineTo((r/0.525731)*0.200811,0);
+                } else {
+                    ctx.lineTo(r,0);
+                }
+            }
+            ctx.closePath();
+            ctx.fillStyle='#FFFF00';
+            ctx.fill();
+            ctx.restore();
+        }
+    </script>
+</body>
+</html>
