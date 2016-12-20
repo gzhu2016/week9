@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>五星红旗</title>
+</head>
+<body>
+<div id = "canvas-warp">
+<canvas id = "canvas" style= "border: 1px solid #aaaaaa; display: block; margin: 50px auto;">
+    你的浏览器居然不支持Canvas？！赶快换一个吧！！
+</canvas>
+</div>
+<script>
+    window.onload = function ()
+    {
+        var canvas = document.getElementById("canvas");
+
+        canvas.width = 800;
+        canvas.height = 500;
+        var context = canvas.getContext("2d");
+
+        context.fillStyle = '#f00';
+        context.fillRect(0, 0, 800, 500);
+        drawStar(context, 90, 150, 150, 0);    //大星星
+        drawStar(context, 30, 150 + 175 * Math.cos(-30 / 180 * Math.PI), 150 + 175 * Math.sin(-30 / 180 * Math.PI), -48);   //小星星
+        drawStar(context, 30, 150 + 200 * Math.cos(-10 / 180 * Math.PI), 150 + 200 * Math.sin(-10 / 180 * Math.PI), -28);   //小星星
+        drawStar(context, 30, 150 + 200 * Math.cos(10 / 180 * Math.PI), 150 + 200 * Math.sin(10 / 180 * Math.PI), -8);      //小星星
+        drawStar(context, 30, 150 + 175 * Math.cos(30 / 180 * Math.PI), 150 + 175 * Math.sin(30 / 180 * Math.PI), 12);      //小星星
+    };
+
+    function drawStar(context, R, x, y, rot)
+    {
+        context.beginPath();
+        for (var i = 0; i < 5; i++)
+        {
+            context.lineTo(Math.cos((18 + 72 * i + -rot ) / 180 * Math.PI) * R + x, -Math.sin((18 + 72 * i + -rot ) / 180 * Math.PI) * R + y);
+            context.lineTo(Math.cos((54 + 72 * i + -rot ) / 180 * Math.PI) * R * 2 / 5 + x, -Math.sin((54 + 72 * i + -rot) / 180 * Math.PI) * R * 2 / 5 + y);
+        }
+        context.closePath();
+        context.fillStyle = "#ff0";
+        context.strokeStyle = "#ff0";
+        context.lineWidth = 1;
+        context.fill();
+        context.stroke();
+    }
+
+
+    drawMessage(context , "1505100029" , 350 , 400);
+
+
+    function drawMessage(context , messary , x , y)
+    {
+        context.font = 'bold 52px 宋体';
+        context.textAlign = 'center';
+        context.fillStyle = 'black';
+        context.fillText(messary , x , y);
+    }
+
+</script>
+</body>
+</html>
