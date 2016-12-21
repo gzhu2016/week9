@@ -1,0 +1,43 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>作品</title>
+</head>
+<body>
+    <div id="canvaswarp">
+        <canvas id="canvas" style="border: 1px solid #aaaaaa;display: block; margin: 50px auto;">
+            请更换浏览器
+        </canvas>
+    </div>
+</body>
+<script>
+    window.onload = function () {
+        var canvas = document.getElementById("canvas");
+        canvas.width = 800;
+        canvas.height = 600;
+        var context = canvas.getContext("2d");
+        function drawName() {
+            context.beginPath();
+            context.font = '32px 楷体';
+            context.fillStyle = "#000";
+            context.fillText('杜易文', 50, 50);
+            context.closePath();
+        }
+        function drawImg(x, y, size) {
+            context.beginPath();
+            var img = new Image();
+            img.src = './img.png';
+            img.onload = function () {
+                context.drawImage(img, x, y, size, size);
+            }
+            context.closePath();
+        }
+        for (var i = 0; i < 5000; i++) {
+            drawImg(Math.random() * 900 - 100, Math.random() * 600 +50,  Math.random() * Math.random() * 75 + 15);
+        }
+        drawName();
+    }
+</script>
+</html>

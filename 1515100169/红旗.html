@@ -1,0 +1,47 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>红旗</title>
+</head>
+<body>
+    <div id="canvaswarp">
+        <canvas id="canvas" style="border: 1px solid #aaaaaa;display: block; margin: 50px auto;">
+            请更换浏览器
+        </canvas>
+    </div>
+</body>
+<script>
+    window.onload = function () {
+        var canvas = document.getElementById("canvas");
+        canvas.width = 600;
+        canvas.height = 400;
+        var context = canvas.getContext("2d");
+        function drawStar(x, y, R, deg) {
+            context.save();
+            context.beginPath();
+            context.translate(x, y);
+            context.rotate(deg);
+            context.moveTo(0, 0 - R);
+            for (var i = 1; i < 5; i++) {
+                context.lineTo(0 + Math.cos((90 + 144 * i) / 180 * Math.PI) * R, 0 - Math.sin((90 + 144 * i) / 180 * Math.PI) * R);
+            }
+            context.fillStyle = ('#ffde00');
+            context.fill();
+            context.closePath();
+            context.restore();
+        }
+        context.beginPath();
+        context.fillStyle = ('#de2910')
+        context.fillRect(0, 0, 600, 400);
+        context.closePath();
+        drawStar(100, 100, 60, 0);
+        drawStar(200, 40, 20, (Math.PI * 1.5 - Math.atan(60 / 100)));
+        drawStar(240, 80, 20, (Math.PI * 1.5 - Math.atan(20 / 140)));
+        drawStar(240, 140, 20, (Math.PI * 1.5 + Math.atan(40 / 140)));
+        drawStar(200, 180, 20, (Math.PI * 1.5 + Math.atan(80 / 100)));
+    }
+</script>
+</body>
+</html>
