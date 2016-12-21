@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<div id="canvas-warp">
+    <canvas id="canvas" style="border:1px solid #aaaaaa;display:block;margin:50px auto;">
+        当前浏览器不支持Canvas，请更换浏览器后再试!
+    </canvas>
+</div>
+<script>
+    window.onload = function() {
+        var canvas = document.getElementById("canvas");
+
+        canvas.width = 1200;
+        canvas.height = 800;
+        var context = canvas.getContext("2d");
+
+        context.beginPath();
+        context.lineWidth = 5;
+        context.moveTo(600 ,50);
+        context.lineTo(300 ,450);
+        context.lineTo(900 ,450);
+        context.closePath();
+        context.strokeStyle = "green";
+        context.stroke();
+
+        context.beginPath();
+        context.lineWidth = 5;
+        context.strokeStyle = "green";
+        context.moveTo(400 , 950/3);
+        context.quadraticCurveTo(600 ,50 ,800 ,950/3);
+        context.stroke();
+
+        context.beginPath();
+        context.lineWidth = 5;
+        context.strokeStyle = "green";
+        context.moveTo(400 , 950/3);
+        context.quadraticCurveTo(600 , 450, 800 , 950/3);
+        context.stroke();
+
+        context.beginPath();
+        context.lineWidth = 5;
+        context.arc(600 , 280 ,100 ,0 , 2*Math.PI);
+        context.fillStyle = "black";
+        context.strokeStyle = "greeen";
+        context.fill();
+        context.stroke();
+
+
+
+        context.font = "bold 40px Arial";
+        context.fillStyle = "#058";
+        context.fillText("魏莹",100,700);
+
+
+    }
+</script>
+</body>
+</html>
