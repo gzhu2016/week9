@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>魔性烟花</title>
+</head>
+<body>
+<div id="canvas-warp">
+    <canvas id="canvas" style="border: 1px solid #aaaaaa; display: block; margin: 50px auto;">
+        你的浏览器居然不支持canvas？赶快换一个
+    </canvas>
+</div>
+<script>
+    window.onload = function () {
+        var canvas = document.getElementById("canvas");
+        canvas.width = 800;
+        canvas.height = 600;
+        var context = canvas.getContext("2d");
+
+
+        sky(context);
+        prairie(context);
+
+        context.beginPath();                                   //烟花一
+            for (var i = 1; i <= 10; i++) {
+                context.save();
+                context.translate(500, 200);
+                context.rotate(36 * i * Math.PI / 180);
+                context.fillStyle = "rgba(255,0,0,0.25)";
+                context.fillRect(0, -20, 100, 100);
+                context.restore();
+            }
+            context.closePath();
+
+
+        context.beginPath();                                   //烟花二
+        for (var i = 1; i <= 10; i++) {
+            context.save();
+            context.translate(300, 300);
+            context.rotate(36 * i * Math.PI / 180);
+            context.fillStyle = "rgba(255,0,0,0.25)";
+            context.fillRect(0, -20, 50, 50);
+            context.restore();
+        }
+        context.closePath();
+
+        context.beginPath();                                   //烟花三
+        for (var i = 1; i <= 10; i++) {
+            context.save();
+            context.translate(100, 200);
+            context.rotate(36 * i * Math.PI / 180);
+            context.fillStyle = "rgba(255,0,0,0.25)";
+            context.fillRect(0, -20, 130, 130);
+            context.restore();
+        }
+        context.closePath();
+
+
+        var gradient = context.createLinearGradient(0,0,800,0);                 //字
+        context.font = "50px serif"
+        gradient.addColorStop("0","magenta");
+        gradient.addColorStop("0.5","blue");
+        gradient.addColorStop("1.0","red");
+        context.fillStyle = gradient;
+        context.strokeStyle = "#00AAAA";
+        context.fillText("魔幻烟花，陆东亮，1519400044", 50, 100);
+
+
+    }
+
+
+    function sky(cxt) {                        //天空
+        cxt.save();
+
+        cxt.beginPath();
+        cxt.moveTo(0, 420);
+        cxt.bezierCurveTo(250, 300, 350, 550, 800, 400);
+        cxt.lineTo(800, 0);
+        cxt.lineTo(0, 0);
+        cxt.closePath();
+
+        var linestyle = cxt.createRadialGradient(800, 0, 80, 800,0,200);
+        linestyle.addColorStop(0, "rgb(255,245,225)");
+        linestyle.addColorStop(0.1, "#2491AA");
+        linestyle.addColorStop(0.8,"rgb(0,31,86)");
+        linestyle.addColorStop(1,"black");
+
+
+        cxt.fillStyle = linestyle;
+        cxt.fill();
+        cxt.restore();
+
+    }
+
+    function prairie(cxt){                               //草地
+        cxt.save();
+
+        cxt.beginPath();
+        cxt.moveTo(0,420);
+        cxt.bezierCurveTo(250,300,350,550,800,400);
+        cxt.lineTo(800,600);
+        cxt.lineTo(0,600);
+        cxt.closePath();
+
+        var linestyle = cxt.createLinearGradient(0,600,600,0)
+
+        linestyle.addColorStop(0,"rgb(48,128,20)");
+        linestyle.addColorStop(0.3,"rgb(34,139,34)");
+        linestyle.addColorStop(1,"rgb(56,94,15)");
+
+        cxt.fillStyle = linestyle;
+        cxt.fill();
+        cxt.restore();
+    }
+
+
+</script>
+</body>
+</html>
