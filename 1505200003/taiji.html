@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>太极</title>
+    <style>
+        #canvas {
+            border: 1px solid #aaaaaa;
+            display: block;
+            margin: 50px auto;
+        }
+    </style>
+</head>
+<body>
+<div id="canvas-warp">
+    <canvas id="canvas">
+        你的浏览器居然不支持canvas?赶快换一个吧
+    </canvas>
+</div>
+<script>
+    window.onload=function() {
+                var canvas = document.getElementById("canvas");
+                canvas.width = 600;
+                canvas.height = 600;
+                var context = canvas.getContext("2d");
+                context.fillStyle = "gray";
+                context.fillRect(0,0,600,600);
+
+        context.beginPath();
+        context.arc(300,300,200,0,Math.PI*2);
+        context.fillStyle="white";
+        context.fill();
+
+
+        context.beginPath();
+        context.arc(300,200,100,Math.PI*0.5,Math.PI*1.5);
+        context.arc(300,300,200,Math.PI*1.5,Math.PI*0.5);
+        context.fillStyle="black";
+        context.fill();
+
+        context.beginPath();
+        context.arc(300,400,100,Math.PI*1.5,Math.PI*0.5);
+        context.fillStyle="white";
+        context.fill();
+
+        context.beginPath();
+        context.arc(300,400,30,0,Math.PI*2);
+        context.fillStyle="black";
+        context.fill();
+
+        context.beginPath();
+        context.arc(300,200,30,0,Math.PI*2);
+        context.fillStyle="white";
+        context.fill();
+
+        context.font="50px Verdana";
+        context.fillStyle="black";
+        context.textAlign="right";
+        context.textBaseline="bottom";
+        context.fillText("冼铭昕",600,600);
+    }
+
+
+
+</script>
+</body>
+</html>

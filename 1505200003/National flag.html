@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>国旗</title>
+    <style>
+        #canvas {
+            border: 1px solid #aaaaaa;
+            display: block;
+            margin: 50px auto;
+        }
+    </style>
+</head>
+<body>
+<div id="canvas-warp">
+    <canvas id="canvas">
+        你的浏览器居然不支持canvas?赶快换一个吧
+    </canvas>
+</div>
+<script>
+    window.onload=function() {
+                var canvas = document.getElementById("canvas");
+                canvas.width = 1280;
+                canvas.height = 852;
+                var context = canvas.getContext("2d");
+                context.fillStyle = "#de2910";
+                context.fillRect(0, 0, 1280, 852);
+
+                drawFivePointedStar(context,214,214,52,128,0);
+                drawFivePointedStar(context,426,84,18,44,26);
+                drawFivePointedStar(context,512,170,18,44,45);
+                drawFivePointedStar(context,512,298,18,44,68);
+                drawFivePointedStar(context,426,384,18,44,91);
+        }
+            function drawFivePointedStar(cxt,x,y,r,R,rot){
+                cxt.beginPath();
+                for(var i=0;i<5;i++){
+                    cxt.lineTo(x+R*Math.cos((18+72*i-rot)/180*Math.PI),y-R*Math.sin((18+72*i-rot)/180*Math.PI));
+                    cxt.lineTo(x+r*Math.cos((54+72*i-rot)/180*Math.PI),y-r*Math.sin((54+72*i-rot)/180*Math.PI));
+
+                }
+
+                cxt.fillStyle="#ffde00";
+                cxt.fill();
+            }
+
+
+</script>
+</body>
+</html>
