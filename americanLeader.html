@@ -1,0 +1,81 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>美国队长的盾牌</title>
+<style type="text/css">
+#canvas{
+	display:block;
+	margin:50px auto;
+}
+</style>
+</head>
+
+<body>
+    <div id="canvas-warp">
+        <canvas id="canvas">
+        
+        </canvas>
+    </div>
+    
+<script type="text/javascript">
+    window.onload=function(){
+		var canvas=document.getElementById("canvas");
+		canvas.width=580;
+		canvas.height=580;
+		var context=canvas.getContext("2d");
+		
+		context.beginPath();
+		context.arc(290,290,290,0,2*Math.PI);
+		context.closePath();
+		context.fillStyle="rgb(228,23,28)";
+		context.fill();
+		
+		context.beginPath();
+		context.arc(290,290,240,0,2*Math.PI);
+		context.closePath();
+		context.fillStyle="rgb(255,255,255)";
+		context.fill();
+		
+		context.beginPath();
+		context.arc(290,290,190,0,2*Math.PI);
+		context.closePath();
+		context.fillStyle="rgb(228,23,28)";
+		context.fill();
+		
+		context.beginPath();
+		context.arc(290,290,140,0,2*Math.PI);
+		context.closePath();
+		context.fillStyle="rgb(22,77,157)";
+		context.fill();
+		
+		fiveStar(context,290,170,222,"rgb(255,255,255)");
+		fiveStar(context,290,200,160,"rgb(255,255,240)");
+	}
+	
+	function fiveStar(context,x,y,sideLength,color){
+		var x1=sideLength*Math.sin(Math.PI/10);
+		var h1=sideLength*Math.cos(Math.PI/10);
+		var x2=sideLength/2;
+		var h2=sideLength/2*Math.tan(Math.PI/5);
+			
+		context.beginPath();
+		context.moveTo(x,y);
+		context.lineTo(x+x1,y+h1);
+		context.lineTo(x-sideLength/2,y+h2);
+		context.lineTo(x+sideLength/2,y+h2);
+		context.lineTo(x-x1,y+h1);
+		context.lineTo(x-x1,y+h1);
+		context.lineTo(x,y);
+		context.closePath();
+			
+		context.fillStyle=color;
+		context.lineWidth=1;
+		context.strokeStyle=color;
+			
+		context.fill();
+		context.stroke();
+	}
+</script>
+</body>
+</html>
