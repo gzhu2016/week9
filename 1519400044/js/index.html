@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>五星红旗</title>
+</head>
+<body>
+<div id="canvas-warp">
+    <canvas id="canvas" style="border: 1px solid #aaaaaa; display: block; margin: 50px auto;">
+        你的浏览器居然不支持canvas？赶快换一个
+    </canvas>
+</div>
+<script>
+    window.onload = function () {
+        var canvas = document.getElementById("canvas");
+        canvas.width = 900;
+        canvas.height = 600;
+        var context = canvas.getContext("2d");
+
+        context.fillStyle = "red";
+        context.fillRect(0, 0, 900, 600);
+
+        context.beginPath();
+        wuxing(context, 150, 150, 90, 36,0);     //大五角星
+        context.closePath();
+
+        context.beginPath();
+        wuxing(context, 300, 60, 30, 12,-22.5);           //左上1
+        context.closePath();
+
+        context.beginPath();
+        wuxing(context, 360, 120, 30, 12,-45);         //2
+        context.closePath();
+
+        context.beginPath();
+        wuxing(context, 360, 210, 30, 12,0);         //3
+        context.closePath();
+
+        context.beginPath();
+        wuxing(context, 300, 270, 30, 12,-22.5);        //4
+        context.closePath();
+
+    }
+
+    function wuxing(context, x, y, r1, r2,d) {        //r1外圈   r2内圈  d小五角星转的度数
+        for (var i = 0; i < 5; i++) {
+            context.lineTo(Math.cos((18 +d+ i * 72) / 180 * Math.PI) * r1 + x, -Math.sin((18 +d+ i * 72) / 180 * Math.PI) * r1 + y);
+            context.lineTo(Math.cos((54 +d+ i * 72) / 180 * Math.PI) * r2 + x, -Math.sin((54 +d+ i * 72) / 180 * Math.PI) * r2 + y);
+        }
+        context.closePath();
+        context.fillStyle = "yellow";
+        context.strokeStyle = "yellow";
+        context.fill();
+        context.stroke();
+    }
+
+</script>
+</body>
+</html>
