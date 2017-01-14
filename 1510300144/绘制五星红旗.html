@@ -1,0 +1,50 @@
+
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>canvas 绘制五星红旗</title>
+</head>
+<body>
+<canvas id="myCanvas" width="600" height="400" style="border:1px solid #000"></canvas>
+<script type="text/javascript">
+    var c=document.getElementById("myCanvas");
+    var ctx=c.getContext("2d");
+    var width=c.width;
+    var height=width*2/3;
+    ctx.fillStyle="red";
+    ctx.fillRect(0,0,width,height);
+    var maxR=0.15,minR=0.05;	//0.15大五角星的半径，0.05小五角星的半径
+    var maxX=0.25,maxY=0.25;	//大五角星的位置
+    var minX=[0.50,0.60,0.60,0.50];	//小五角星的X坐标
+    var minY=[0.10,0.20,0.35,0.45];	//小五角星的Y坐标
+    var ox=height*maxX,oy=height*maxY;	//大五角星的中心坐标
+    drawStar(ctx,ox,oy,height*maxR,"#ff0",0);	//绘制五角星
+    for (var idx = 0; idx < 4; idx++) {
+        var  sx = minX[idx] * height, sy = minY[idx] * height;
+        var  theta = Math.atan((oy - sy)/(ox - sx));
+        drawStar(ctx,sx, sy, height * minR, "#ff0",-Math.PI/2+theta);
+    }
+    /*五角星的坐标为（sx,sy）,半径为radius,rotate为0时一个顶点在对称轴上*/
+    /*rotate:绕对称轴旋转rotate弧度*/
+    function drawStar(ctx,sx,sy,radius,color,rotate){
+        ctx.save();
+        ctx.fillStyle=color;
+        ctx.translate(sx,sy);		//移动坐标原点
+        ctx.rotate(Math.PI+rotate);		//Math.PI等于圆周率3.14
+        ctx.beginPath();
+        //360度分成5份，2/5*PI,但底下是PI/5*4,那就想想平时是怎么画五角星的
+        var dig=Math.PI/5*4;
+        for(var i=0;i<5;i++){		//画五角星的五条长边
+            var x=Math.sin(i*dig);	//点的x坐标
+            var y=Math.cos(i*dig);	//点的y坐标
+            ctx.lineTo(x*radius,y*radius);
+        }
+        ctx.closePath();
+        ctx.stroke();
+        ctx.fill();
+        ctx.restore();
+    }
+</script>
+</body>
+</html>
