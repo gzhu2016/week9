@@ -1,0 +1,96 @@
+<!doctype html>
+<html>
+<head><meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title></title><base target="_blank" />
+    <meta charset="utf-8">
+</head>
+<body>
+<canvas id="hovertreecanvas" style="display:block;margin:0px auto;border:1px solid #aaa;">
+    此浏览器不支持canvas，请更换
+</canvas>
+<script>
+    hovertreenight(); setInterval(hovertreenight, 4000);
+    function hovertreenight () {
+        canvas = document.getElementById('hove'+'rtreecanvas');
+        canvas.width=1000;
+        canvas.height=560;
+        context=canvas.getContext('2d');
+
+        drawing(context);
+        drawing_start_1(context);
+        hh();
+        draw_moon(context);
+        draw_moon2(context);
+        draw_moon3(context);
+    }
+    function hh(){
+        for(var i=0;i<100;i++){
+            var r=Math.random()*10+3;
+            var x=Math.random()*1000;
+            var y=Math.random()*300;
+            var a=Math.random()*360;
+            drawing_start_2(context,x,y,r,r/2.0,a);
+
+        }
+    }
+    function draw(cxt){
+        cxt.beginPath();
+        for(i=0;i<56;i++){
+            cxt.moveTo(0,i*20);
+            cxt.lineTo(1000,i*20);
+            cxt.stroke();
+        }
+    }
+    function draw2(cxt){
+        cxt.beginPath();
+        for(i=0;i<56;i++){
+            cxt.moveTo(i*20,0);
+            cxt.lineTo(i*20,560);
+            cxt.stroke();
+        }
+    }
+    function drawing(cxt){ //画整体背景颜色渐变
+        var linearGrad=cxt.createLinearGradient(500,0,500,540);
+        linearGrad.addColorStop(0.0,'black');
+        linearGrad.addColorStop(1.0,'purple');
+        cxt.fillStyle=linearGrad;
+        cxt.fillRect(0,0,1000,540);
+        cxt.fill();
+    }
+    function drawing_start_1(cxt){ //星星背景
+        cxt.beginPath();
+        cxt.rect(0,0,0,550);
+        cxt.closePath();
+        cxt.stroke();
+    }
+    function drawing_start_2(cxt,x,y,outerR,innerR,rot){ //画星星
+        cxt.beginPath();
+        for(var i=0;i<5;i++){
+            cxt.lineTo((Math.cos(18+i*72-rot)/180*Math.PI)*outerR+x,
+                    -Math.sin((18+i*72-rot)/180*Math*outerR+y));
+
+            cxt.lineTo(Math.cos((54+i*72-rot)/180*Math.PI)*innerR+x,
+                    -Math.sin((54+i*72-rot)/180*Math.PI)*innerR+y);
+        }
+        cxt.fillStyle="White"
+        cxt.fill();
+        cxt.closePath();
+        cxt.stroke();
+    }
+    function draw_moon(cxt){ //画月亮
+        cxt.beginPath();
+        cxt.arc(200, 200, 100, 0.6 * Math.PI, 1.3 * Math.PI);
+        cxt.bezierCurveTo(140, 119, 93, 224, 169, 295);
+        cxt.fillStyle="Yellow";
+        cxt.fill();
+        cxt.stroke();
+        context.font="20px Verdana bold";
+    context.fillStyle="white";
+    context.fillText("张临军1510300144",10,500);
+        context.font="30px Verdana bold";
+        context.fillStyle="white";
+        context.fillText("璀璨星空",440,35);
+    }
+</script>
+</body>
+</html>
